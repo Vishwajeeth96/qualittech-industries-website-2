@@ -1,0 +1,304 @@
+@import "tailwindcss";
+
+@theme {
+  --color-qti-blue: #017AC3;
+  --color-qti-deep: #075985;
+  --color-qti-navy: #071827;
+  --color-qti-red: #D71920;
+  --color-qti-slate: #64748B;
+  --color-qti-bg: #F7FAFC;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Space Grotesk', monospace;
+}
+
+/* ==========================================================================
+   5. EXACT NEWTON'S CRADLE ANIMATION
+   Mechanics preserved exactly; --uib-color set to QTI BLUE #017AC3
+   ========================================================================== */
+.newtons-cradle {
+  --uib-size: 50px;
+  --uib-speed: 1.2s;
+  --uib-color: #017AC3;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--uib-size);
+  height: var(--uib-size);
+}
+
+.newtons-cradle__dot {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  width: 25%;
+  transform-origin: center top;
+}
+
+.newtons-cradle__dot::after {
+  content: '';
+  display: block;
+  width: 100%;
+  height: 25%;
+  border-radius: 50%;
+  background-color: var(--uib-color);
+}
+
+.newtons-cradle__dot:first-child {
+  animation: swing var(--uib-speed) linear infinite;
+}
+
+.newtons-cradle__dot:last-child {
+  animation: swing2 var(--uib-speed) linear infinite;
+}
+
+@keyframes swing {
+  0% {
+    transform: rotate(0deg);
+    animation-timing-function: ease-out;
+  }
+  25% {
+    transform: rotate(70deg);
+    animation-timing-function: ease-in;
+  }
+  50% {
+    transform: rotate(0deg);
+    animation-timing-function: linear;
+  }
+}
+
+@keyframes swing2 {
+  0% {
+    transform: rotate(0deg);
+    animation-timing-function: linear;
+  }
+  50% {
+    transform: rotate(0deg);
+    animation-timing-function: ease-out;
+  }
+  75% {
+    transform: rotate(-70deg);
+    animation-timing-function: ease-in;
+  }
+}
+
+/* ==========================================================================
+   8. EXACT BUTTON ANIMATION CONCEPT
+   Hover fill set to QTI BLUE #017AC3 instead of black
+   ========================================================================== */
+.qti-skew-btn {
+  background: #ffffff;
+  color: #017AC3;
+  border: 1.5px solid #017AC3;
+  padding: 10px 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transform: skew(-21deg);
+  position: relative;
+  overflow: hidden;
+  transition: color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
+  z-index: 1;
+}
+
+.qti-skew-btn span {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transform: skew(21deg);
+}
+
+.qti-skew-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 100%;
+  left: 0;
+  background: #017AC3;
+  opacity: 0;
+  z-index: -1;
+  transition: all 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.qti-skew-btn:hover {
+  color: #ffffff;
+  border-color: #017AC3;
+  box-shadow: 0 10px 25px -5px rgba(1, 122, 195, 0.35);
+}
+
+.qti-skew-btn:hover::before {
+  left: 0;
+  right: 0;
+  opacity: 1;
+}
+
+/* Secondary Frosted Variant: White slate text, fills with QTI Blue */
+.qti-skew-btn--secondary {
+  background: rgba(255, 255, 255, 0.85);
+  color: #061522;
+  border: 1.5px solid rgba(1, 122, 195, 0.35);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.qti-skew-btn--secondary:hover {
+  color: #ffffff;
+  border-color: #017AC3;
+}
+
+/* Blue primary variant for skewed button */
+.qti-skew-btn--blue {
+  background: #017AC3;
+  color: #ffffff;
+  border: 1.5px solid #017AC3;
+}
+
+.qti-skew-btn--blue::before {
+  background: #00609C;
+}
+
+/* ==========================================================================
+   17. EXACT INPUT ANIMATION CONCEPT
+   Hover and focus colors changed to QTI BLUE #017AC3
+   ========================================================================== */
+.input-group {
+  position: relative;
+  width: 100%;
+}
+
+.qti-form-input {
+  width: 100%;
+  height: 48px;
+  background-color: rgba(5, 6, 15, 0.04);
+  border-radius: 0.5rem;
+  padding: 0 1rem;
+  border: 2px solid transparent;
+  font-size: 1rem;
+  color: #071827;
+  transition: border-color 0.3s cubic-bezier(.25,.01,.25,1) 0s,
+              color 0.3s cubic-bezier(.25,.01,.25,1) 0s,
+              background 0.2s cubic-bezier(.25,.01,.25,1) 0s;
+}
+
+.qti-form-textarea {
+  width: 100%;
+  min-height: 120px;
+  background-color: rgba(5, 6, 15, 0.04);
+  border-radius: 0.5rem;
+  padding: 0.75rem 1rem;
+  border: 2px solid transparent;
+  font-size: 1rem;
+  color: #071827;
+  resize: vertical;
+  transition: border-color 0.3s cubic-bezier(.25,.01,.25,1) 0s,
+              color 0.3s cubic-bezier(.25,.01,.25,1) 0s,
+              background 0.2s cubic-bezier(.25,.01,.25,1) 0s;
+}
+
+.qti-form-label {
+  display: block;
+  margin-bottom: 0.4rem;
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: rgba(5, 6, 15, 0.6);
+  transition: color 0.3s cubic-bezier(.25,.01,.25,1) 0s;
+}
+
+.qti-form-input:hover,
+.qti-form-input:focus,
+.qti-form-textarea:hover,
+.qti-form-textarea:focus,
+.input-group:hover .qti-form-input,
+.input-group:hover .qti-form-textarea {
+  outline: none;
+  border-color: #017AC3;
+  background-color: rgba(1, 122, 195, 0.03);
+}
+
+.input-group:hover .qti-form-label,
+.qti-form-input:focus ~ .qti-form-label,
+.qti-form-input:focus,
+.qti-form-textarea:focus {
+  color: #017AC3;
+}
+
+/* ==========================================================================
+   FROSTED GLASSMORPHISM & INDUSTRIAL DESIGN UTILITIES
+   ========================================================================== */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 20px 40px -15px rgba(7, 24, 39, 0.06), 0 0 1px 1px rgba(255, 255, 255, 0.8) inset;
+}
+
+.glass-panel-dark {
+  background: rgba(7, 24, 39, 0.75);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35), 0 0 1px 1px rgba(255, 255, 255, 0.05) inset;
+}
+
+.glass-panel-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(1, 122, 195, 0.12);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-panel-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(1, 122, 195, 0.35);
+  box-shadow: 0 20px 35px -10px rgba(1, 122, 195, 0.12);
+}
+
+/* Blueprint Grid Backgrounds */
+.blueprint-grid {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(1, 122, 195, 0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(1, 122, 195, 0.06) 1px, transparent 1px);
+}
+
+.blueprint-grid-dark {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+}
+
+.dot-matrix-pattern {
+  background-size: 24px 24px;
+  background-image: radial-gradient(circle, rgba(1, 122, 195, 0.12) 1.5px, transparent 1.5px);
+}
+
+/* Technical Accent Lines */
+.technical-line-x {
+  background: linear-gradient(90deg, transparent, rgba(1, 122, 195, 0.4), transparent);
+}
+
+/* Custom Smooth Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #F7FAFC;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBD5E1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #017AC3;
+}
