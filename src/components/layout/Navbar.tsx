@@ -3,7 +3,12 @@ import { Menu, X, ArrowUpRight } from 'lucide-react';
 import Logo from '../ui/Logo';
 import SkewButton from '../ui/SkewButton';
 
-export const Navbar: React.FC = () => {
+interface NavbarProps {
+  onNavigate?: (route: string) => void;
+  currentRoute?: string;
+}
+
+export const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentRoute = 'home' }) => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -24,6 +29,21 @@ export const Navbar: React.FC = () => {
     { label: 'Industries', href: '#industries' },
     { label: 'Process', href: '#process' },
   ];
+
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    setMobileMenuOpen(false);
+    if (currentRoute !== 'home' && onNavigate) {
+      e.preventDefault();
+      onNavigate('home');
+      setTimeout(() => {
+        const anchor = href.replace('#', '');
+        const el = document.getElementById(anchor);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 120);
+    }
+  };
 
   return (
     <>
@@ -56,7 +76,17 @@ export const Navbar: React.FC = () => {
             <div className="absolute -bottom-1 -right-1 w-2.5 h-2.5 border-b border-r border-[#D71920]/60 rounded-br-sm pointer-events-none" />
 
             {/* Logo with Frosted Backdrop */}
-            <Logo size="md" variant="light" />
+            <button
+              type="button"
+              onClick={() => {
+                if (onNavigate) onNavigate('home');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="cursor-pointer bg-transparent border-none p-0 text-left"
+              title="Return to Qualitech Home"
+            >
+              <Logo size="md" variant="light" />
+            </button>
 
             {/* Desktop Navigation Links with Frosted Glass Hover Pills */}
             <div className="hidden lg:flex items-center gap-1 xl:gap-2">
@@ -64,7 +94,8 @@ export const Navbar: React.FC = () => {
                 <a
                   key={link.label}
                   href={link.href}
-                  className="relative px-3 py-1.5 text-xs xl:text-sm font-semibold text-slate-700 hover:text-[#017AC3] hover:bg-white/70 hover:backdrop-blur-md rounded-full transition-all duration-200 group whitespace-nowrap shadow-none hover:shadow-xs hover:border hover:border-white/80"
+                  onClick={(e) => handleLinkClick(e, link.href)}
+                  className="relative px-3 py-1.5 text-xs xl:text-sm font-semibold text-slate-700 hover:text-[#017AC3] hover:bg-white/70 hover:backdrop-blur-md rounded-full transition-all duration-200 group whitespace-nowrap shadow-none hover:shadow-xs hover:border hover:border-white/80 cursor-pointer"
                 >
                   <span>{link.label}</span>
                 </a>
@@ -127,8 +158,8 @@ export const Navbar: React.FC = () => {
               <a
                 key={link.label}
                 href={link.href}
-                onClick={() => setMobileMenuOpen(false)}
-                className="flex items-center justify-between px-4 py-3 text-base font-bold text-slate-800 hover:text-[#017AC3] hover:bg-white/60 rounded-xl transition-colors"
+                onClick={(e) => handleLinkClick(e, link.href)}
+                className="flex items-center justify-between px-4 py-3 text-base font-bold text-slate-800 hover:text-[#017AC3] hover:bg-white/60 rounded-xl transition-colors cursor-pointer"
               >
                 <span>{link.label}</span>
                 <span className="w-1.5 h-1.5 rounded-full bg-[#017AC3]/40" />

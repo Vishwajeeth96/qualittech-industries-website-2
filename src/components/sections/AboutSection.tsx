@@ -26,7 +26,7 @@ export const AboutSection: React.FC = () => {
             <div className="flex items-center gap-3">
               <ThreeDotVisual />
               <span className="text-xs font-mono font-bold tracking-widest text-[#017AC3] uppercase">
-                EST. AUGUST 2003 &bull; HOSUR / ELUVAPALLI
+                EST. AUGUST 2003 &bull; BAGALUR ROAD, ELUVAPALLI, HOSUR
               </span>
             </div>
 

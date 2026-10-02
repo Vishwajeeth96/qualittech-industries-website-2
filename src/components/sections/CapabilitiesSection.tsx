@@ -5,7 +5,19 @@ import AbstractTechnicalVisual from '../ui/AbstractTechnicalVisual';
 import ThreeDotVisual from '../ui/ThreeDotVisual';
 import { CORE_PILLARS } from '../../data/content';
 
-export const CapabilitiesSection: React.FC = () => {
+interface CapabilitiesSectionProps {
+  onNavigate?: (route: string) => void;
+}
+
+export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onNavigate }) => {
+  const handlePillarClick = (pillarId: string) => {
+    if (onNavigate) {
+      onNavigate(pillarId);
+    } else {
+      window.location.hash = pillarId;
+    }
+  };
+
   return (
     <section id="capabilities" className="scroll-mt-28 py-24 sm:py-32 bg-[#F7FAFC] relative overflow-hidden">
       {/* Background blueprint grid */}
@@ -13,19 +25,20 @@ export const CapabilitiesSection: React.FC = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeading
-          badge="7 Core Pillars"
+          badge="6 Core Pillars"
           title="ENGINEERING CAPABILITIES"
           subtitle="FROM RAW MATERIAL TO FINISHED COMPONENT. Qualitech Industries integrates cutting, tooling, fabrication, hydraulics, and surface treatment into a coordinated engineering ecosystem."
           align="center"
           className="mb-16"
         />
 
-        {/* 7 Capabilities Grid */}
+        {/* 6 Capabilities Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {CORE_PILLARS.map((pillar) => (
             <div
               key={pillar.id}
-              className="group rounded-2xl bg-white/90 backdrop-blur-xl border border-slate-200/90 p-6 sm:p-7 hover:border-[#017AC3]/50 hover:shadow-2xl hover:shadow-[#017AC3]/12 transition-all duration-300 flex flex-col justify-between"
+              onClick={() => handlePillarClick(pillar.id)}
+              className="group rounded-2xl bg-white/90 backdrop-blur-xl border border-slate-200/90 p-6 sm:p-7 hover:border-[#017AC3]/50 hover:shadow-2xl hover:shadow-[#017AC3]/12 transition-all duration-300 flex flex-col justify-between cursor-pointer"
             >
               <div>
                 {/* Header: Number & 3-Dot Accent */}
@@ -70,23 +83,26 @@ export const CapabilitiesSection: React.FC = () => {
                 </ul>
               </div>
 
-              {/* Bottom Action: Navigates to actual capability section anchor */}
+              {/* Bottom Action: Navigates to dedicated capability page */}
               <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between">
-                <a
-                  href={pillar.targetAnchor}
-                  className="text-xs font-mono font-bold text-[#017AC3] hover:text-[#061522] transition-colors inline-flex items-center gap-1 group/btn"
+                <button
+                  type="button"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handlePillarClick(pillar.id);
+                  }}
+                  className="text-xs font-mono font-bold text-[#017AC3] hover:text-[#061522] transition-colors inline-flex items-center gap-1 group/btn cursor-pointer"
                 >
                   <span>Explore {pillar.title}</span>
                   <span className="transition-transform group-hover/btn:translate-x-0.5">&rarr;</span>
-                </a>
+                </button>
 
-                <a
-                  href={pillar.targetAnchor}
+                <div
                   className="w-8 h-8 rounded-lg bg-slate-100 group-hover:bg-[#017AC3] group-hover:text-white text-slate-700 flex items-center justify-center transition-all duration-200 shadow-sm"
-                  aria-label={`View ${pillar.title} section`}
+                  aria-label={`View ${pillar.title} page`}
                 >
                   <ArrowUpRight className="w-4 h-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-                </a>
+                </div>
               </div>
             </div>
           ))}

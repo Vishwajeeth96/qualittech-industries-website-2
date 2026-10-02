@@ -84,10 +84,11 @@ export const COMPANY_OVERVIEW = {
     'From precision cutting and tooling to fabrication, hydraulic machinery, and surface finishing — Qualitech Industries brings multiple manufacturing capabilities together under one engineering-focused operation.',
   location: {
     name: 'QUALITECH INDUSTRIES',
-    addressLine1: 'QRFV+W2, Eluvapalli',
-    addressLine2: 'Tamil Nadu 635103',
+    fullAddress: 'SF No.128/1A, Bagalur Road, Eluvapalli, Hosur, Krishnagiri, Tamil Nadu, 635103',
+    addressLine1: 'SF No.128/1A, Bagalur Road, Eluvapalli',
+    addressLine2: 'Hosur, Krishnagiri, Tamil Nadu, 635103',
     country: 'India',
-    region: 'Hosur / Eluvapalli Industrial Area',
+    region: 'Hosur / Krishnagiri Industrial Corridor',
     mapsUrl: 'https://maps.app.goo.gl/4qJD9zD1KcnKb5caA?g_st=ic',
   },
   contact: {

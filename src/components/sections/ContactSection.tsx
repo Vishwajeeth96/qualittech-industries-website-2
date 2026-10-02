@@ -181,7 +181,7 @@ export const ContactSection: React.FC = () => {
                     Verified Facility
                   </span>
                   <span className="text-xs font-mono text-slate-500">
-                    Plus Code: QRFV+W2
+                    Hosur &bull; PIN 635103
                   </span>
                 </div>
 

@@ -1,10 +1,14 @@
-import React from 'react';
-import { ArrowUpRight, Cog, Trophy, Users, ChevronDown } from 'lucide-react';
+import { ArrowUpRight, Cog, Trophy, Users } from 'lucide-react';
 import RotatingText from '../animations/RotatingText';
 import SkewButton from '../ui/SkewButton';
 import HeroCommercialVideo from '../ui/HeroCommercialVideo';
+import HeroMachineryShowcase from './HeroMachineryShowcase';
 
-export const Hero: React.FC = () => {
+interface HeroProps {
+  onNavigate?: (route: string) => void;
+}
+
+export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
   return (
     <section className="relative min-h-[92vh] pt-32 sm:pt-36 pb-20 sm:pb-24 overflow-hidden flex items-center bg-[#F7FAFC]">
       {/* Background blueprint grid and radiant gradient lighting */}
@@ -161,20 +165,9 @@ export const Hero: React.FC = () => {
           </div>
 
         </div>
-      </div>
 
-      {/* Scroll Curiosity Bridge: Technical continuation into next section */}
-      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex flex-col items-center pointer-events-none z-20">
-        <a
-          href="#capabilities"
-          className="pointer-events-auto group inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/85 hover:bg-white backdrop-blur-md border border-slate-200/80 hover:border-[#017AC3]/50 text-[11px] font-mono text-slate-500 hover:text-[#017AC3] shadow-xs hover:shadow-sm transition-all duration-300"
-          title="Scroll down to explore capabilities"
-        >
-          <span className="w-1.5 h-1.5 rounded-full bg-[#017AC3] group-hover:scale-125 transition-transform" />
-          <span className="tracking-wider uppercase font-semibold text-[10px]">EXPLORE PRODUCTION CAPABILITIES</span>
-          <ChevronDown className="w-3.5 h-3.5 text-slate-400 group-hover:text-[#017AC3] group-hover:translate-y-0.5 transition-all" />
-        </a>
-        <div className="w-px h-6 bg-gradient-to-b from-[#017AC3]/60 via-[#017AC3] to-slate-200 mt-1" />
+        {/* Hero Machinery Showcase: Flagship Machine with "View More" 4-machine reveal */}
+        <HeroMachineryShowcase onNavigate={onNavigate} />
       </div>
     </section>
   );

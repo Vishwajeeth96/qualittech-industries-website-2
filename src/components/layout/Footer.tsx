@@ -4,8 +4,34 @@ import Logo from '../ui/Logo';
 import SkewButton from '../ui/SkewButton';
 import { COMPANY_INFO } from '../../data/content';
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+  onNavigate?: (route: string) => void;
+}
+
+export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   const currentYear = new Date().getFullYear();
+
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (onNavigate) {
+      e.preventDefault();
+      onNavigate('home');
+      setTimeout(() => {
+        const anchor = href.replace('#', '');
+        const el = document.getElementById(anchor);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  };
+
+  const handleCapabilityClick = (e: React.MouseEvent<HTMLAnchorElement>, slug: string) => {
+    if (onNavigate) {
+      e.preventDefault();
+      onNavigate(slug);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
 
   return (
     <footer className="bg-white text-[#061522] relative overflow-hidden pt-16 pb-12 border-t border-slate-200/80">
@@ -65,7 +91,8 @@ export const Footer: React.FC = () => {
                 <li key={item.label}>
                   <a
                     href={item.href}
-                    className="hover:text-[#017AC3] hover:translate-x-1 inline-block transition-all duration-200"
+                    onClick={(e) => handleNavClick(e, item.href)}
+                    className="hover:text-[#017AC3] hover:translate-x-1 inline-block transition-all duration-200 cursor-pointer"
                   >
                     {item.label}
                   </a>
@@ -82,17 +109,18 @@ export const Footer: React.FC = () => {
             </h3>
             <ul className="space-y-2.5 text-sm text-slate-600">
               {[
-                { label: 'Laser Cutting', href: '#laser-cutting' },
-                { label: 'Tool Making & Tooling', href: '#tool-making' },
-                { label: 'Hydraulic Machines', href: '#hydraulic-machines' },
-                { label: 'Welding & Assembly', href: '#welding' },
-                { label: 'Powder Coating', href: '#powder-coating' },
-                { label: 'Phosphating Pre-Treatment', href: '#phosphating' },
+                { label: 'Laser Cutting', slug: 'laser-cutting' },
+                { label: 'Tool Making & Tooling', slug: 'tool-making' },
+                { label: 'Hydraulic Machines', slug: 'hydraulic-machines' },
+                { label: 'Welding & Assembly', slug: 'welding' },
+                { label: 'Powder Coating', slug: 'powder-coating' },
+                { label: 'Phosphating Pre-Treatment', slug: 'phosphating' },
               ].map((cap) => (
                 <li key={cap.label}>
                   <a
-                    href={cap.href}
-                    className="flex items-center gap-2 hover:text-[#017AC3] transition-colors"
+                    href={`#${cap.slug}`}
+                    onClick={(e) => handleCapabilityClick(e, cap.slug)}
+                    className="flex items-center gap-2 hover:text-[#017AC3] transition-colors cursor-pointer"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-[#017AC3]" />
                     <span>{cap.label}</span>
