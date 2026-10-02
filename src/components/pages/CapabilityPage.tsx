@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
   ArrowLeft,
@@ -9,6 +9,8 @@ import {
   ShieldCheck,
   FileSpreadsheet,
   Cpu,
+  ChevronLeft,
+  ChevronRight,
 } from 'lucide-react';
 import { CAPABILITY_PAGES, type CapabilityPageData } from '../../data/capabilityPagesData';
 import { ALL_MACHINES } from '../../data/machineryData';
@@ -21,8 +23,24 @@ interface CapabilityPageProps {
 
 export const CapabilityPage: React.FC<CapabilityPageProps> = ({ slug, onNavigate }) => {
   const [searchQuery, setSearchQuery] = useState<string>('');
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const capabilityData: CapabilityPageData = CAPABILITY_PAGES[slug] || CAPABILITY_PAGES['laser-cutting'];
+
+  // Auto-scroll the active tab into center view when slug changes
+  useEffect(() => {
+    const activeTab = document.getElementById(`cap-tab-${slug}`);
+    if (activeTab && scrollContainerRef.current) {
+      activeTab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+  }, [slug]);
+
+  const handleScroll = (direction: 'left' | 'right') => {
+    if (scrollContainerRef.current) {
+      const amount = direction === 'left' ? -260 : 260;
+      scrollContainerRef.current.scrollBy({ left: amount, behavior: 'smooth' });
+    }
+  };
 
   // Filter all machines belonging to this capability from the official 128-machine registry
   const relatedMachines = useMemo(() => {
@@ -89,38 +107,80 @@ export const CapabilityPage: React.FC<CapabilityPageProps> = ({ slug, onNavigate
       <div className="absolute inset-0 blueprint-grid opacity-50 pointer-events-none -z-10" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Top Breadcrumb & Switcher Bar */}
-        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-slate-200/90">
+        {/* Top Breadcrumb & Status */}
+        <div className="flex flex-wrap items-center justify-between gap-3 pb-3">
           <button
             type="button"
             onClick={() => onNavigate('home')}
-            className="inline-flex items-center gap-2 text-xs font-mono font-bold text-slate-600 hover:text-[#017AC3] transition-colors group cursor-pointer self-start"
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-white border border-slate-200/90 text-xs font-mono font-bold text-slate-700 hover:text-[#017AC3] hover:border-[#017AC3]/50 transition-all shadow-2xs group cursor-pointer"
           >
             <ArrowLeft className="w-4 h-4 text-[#017AC3] transition-transform group-hover:-translate-x-1" />
             <span>&larr; Back to Home / All Capabilities</span>
           </button>
 
-          {/* Quick Pillar Switcher Tabs */}
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
-            {capabilityKeys.map((key) => {
-              const cap = CAPABILITY_PAGES[key];
-              const isActive = key === slug;
-              return (
-                <button
-                  key={key}
-                  type="button"
-                  onClick={() => onNavigate(key)}
-                  className={`px-3 py-1.5 rounded-full text-xs font-mono font-bold whitespace-nowrap transition-all cursor-pointer ${
-                    isActive
-                      ? 'bg-[#017AC3] text-white shadow-xs'
-                      : 'bg-white text-slate-600 hover:bg-slate-100 border border-slate-200'
-                  }`}
-                >
-                  <span>{cap.number}</span>
-                  <span className="ml-1 hidden sm:inline">{cap.title}</span>
-                </button>
-              );
-            })}
+          <div className="flex items-center gap-2 text-xs font-mono text-slate-500">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span>Division {capabilityData.number} of 06 &bull; {capabilityData.title}</span>
+          </div>
+        </div>
+
+        {/* Dedicated Sideways Scrollable Pillar Switcher Bar with Arrow Controls */}
+        <div className="relative rounded-2xl bg-white/95 backdrop-blur-md border border-slate-200/90 p-2 shadow-sm">
+          <div className="flex items-center gap-2">
+            {/* Left Scroll Arrow */}
+            <button
+              type="button"
+              onClick={() => handleScroll('left')}
+              className="shrink-0 w-8 h-8 rounded-xl bg-slate-50 hover:bg-[#017AC3] hover:text-white text-slate-600 border border-slate-200/80 flex items-center justify-center transition-colors cursor-pointer shadow-2xs"
+              aria-label="Scroll capabilities left"
+              title="Scroll left"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+
+            {/* Horizontal Scrollable Tabs Track */}
+            <div
+              ref={scrollContainerRef}
+              className="flex-1 flex items-center gap-2 overflow-x-auto scroll-smooth py-1 px-1 scrollbar-thin scrollbar-thumb-slate-300"
+            >
+              {capabilityKeys.map((key) => {
+                const cap = CAPABILITY_PAGES[key];
+                const isActive = key === slug;
+                return (
+                  <button
+                    id={`cap-tab-${key}`}
+                    key={key}
+                    type="button"
+                    onClick={() => onNavigate(key)}
+                    className={`flex items-center gap-2 px-3.5 sm:px-4 py-2 rounded-xl text-xs sm:text-sm font-mono font-bold whitespace-nowrap transition-all duration-200 cursor-pointer shrink-0 ${
+                      isActive
+                        ? 'bg-[#017AC3] text-white shadow-md shadow-[#017AC3]/25 scale-[1.02] border border-[#017AC3]'
+                        : 'bg-white text-slate-700 hover:text-[#017AC3] hover:bg-slate-100/80 border border-slate-200/90 shadow-2xs'
+                    }`}
+                  >
+                    <span
+                      className={`px-1.5 py-0.5 rounded text-[10px] font-bold ${
+                        isActive ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-600'
+                      }`}
+                    >
+                      {cap.number}
+                    </span>
+                    <span>{cap.title}</span>
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Right Scroll Arrow */}
+            <button
+              type="button"
+              onClick={() => handleScroll('right')}
+              className="shrink-0 w-8 h-8 rounded-xl bg-slate-50 hover:bg-[#017AC3] hover:text-white text-slate-600 border border-slate-200/80 flex items-center justify-center transition-colors cursor-pointer shadow-2xs"
+              aria-label="Scroll capabilities right"
+              title="Scroll right"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
           </div>
         </div>
 
