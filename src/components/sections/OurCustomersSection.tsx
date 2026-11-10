@@ -14,7 +14,18 @@ export const OurCustomersSection: React.FC = () => {
       logoAlt: 'Ashok Leyland Official Logo',
       scopeTitle: 'Engineering / Component Development',
       description:
-        'Customer relationship centered on precision machined and sheet metal fabricated components developed in alignment with commercial vehicle engineering specifications.',
+        'Customer relationship centered on machined and sheet metal fabricated components developed in alignment with commercial vehicle engineering specifications.',
+      tag: 'Customer Relationship',
+    },
+    {
+      id: 'fimer',
+      name: 'FIMER',
+      category: 'ENERGY / POWER ELECTRONICS',
+      logo: '/fimer-logo.svg',
+      logoAlt: 'FIMER Official Logo',
+      scopeTitle: 'Sheet Metal Components & Finishing',
+      description:
+        'Customer relationship for sheet metal fabricated enclosures and components, supported by in-house laser cutting, punching, and surface finishing.',
       tag: 'Customer Relationship',
     },
     {
@@ -23,9 +34,9 @@ export const OurCustomersSection: React.FC = () => {
       category: 'AUTOMOTIVE & ELECTRONICS',
       logo: '/napino-logo.png',
       logoAlt: 'Napino Auto & Electronics Ltd. Official Logo',
-      scopeTitle: 'Precision Components & Engineering Solutions',
+      scopeTitle: 'Components & Engineering Solutions',
       description:
-        'Customer relationship focused on precision component manufacture and tooling solutions engineered for demanding automotive and electronic sub-assemblies.',
+        'Customer relationship focused on component manufacture and tooling solutions engineered for demanding automotive and electronic sub-assemblies.',
       tag: 'Customer Relationship',
     },
   ];
@@ -45,8 +56,8 @@ export const OurCustomersSection: React.FC = () => {
           className="mb-16"
         />
 
-        {/* Two Large Premium Customer Glass Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10 max-w-5xl mx-auto">
+        {/* Customer Glass Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-8 max-w-6xl mx-auto">
           {customers.map((cust) => (
             <div
               key={cust.id}

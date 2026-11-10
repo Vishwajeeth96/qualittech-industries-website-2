@@ -45,7 +45,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
           <div className="lg:col-span-2 flex flex-col">
             <Logo variant="light" size="lg" className="mb-4" />
             <p className="text-slate-600 text-sm leading-relaxed max-w-sm mt-3">
-              Precision machined and sheet metal fabricated components, tooling, hydraulic machines, and surface finishing manufactured with engineering discipline in Hosur, Tamil Nadu.
+              Machined and sheet metal fabricated components, laser cutting, press and stamping, welding, and surface finishing manufactured with engineering discipline in Hosur, Tamil Nadu.
             </p>
 
             <div className="mt-6 flex items-center gap-3">
@@ -109,9 +109,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             </h3>
             <ul className="space-y-2.5 text-sm text-slate-600">
               {[
-                { label: 'Laser Cutting', slug: 'laser-cutting' },
+                { label: 'Laser Cutting & Turret Punching', slug: 'laser-cutting' },
                 { label: 'Tool Making & Tooling', slug: 'tool-making' },
-                { label: 'Hydraulic Machines', slug: 'hydraulic-machines' },
+                { label: 'Press & Stamping', slug: 'press-stamping' },
                 { label: 'Welding & Assembly', slug: 'welding' },
                 { label: 'Powder Coating', slug: 'powder-coating' },
                 { label: 'Phosphating Pre-Treatment', slug: 'phosphating' },
@@ -176,7 +176,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
 
           <div className="flex items-center gap-6">
             <span className="text-slate-500 font-mono">Hosur Industrial Belt &bull; Tamil Nadu</span>
-            <span className="text-slate-600 font-semibold">Engineered for Precision</span>
+            <span className="text-slate-600 font-semibold">Engineered in Hosur</span>
           </div>
         </div>
       </div>

@@ -12,6 +12,9 @@ import OurCustomersSection from './components/sections/OurCustomersSection';
 import IndustriesSection from './components/sections/IndustriesSection';
 import ProcessSection from './components/sections/ProcessSection';
 import FeaturedCTA from './components/sections/FeaturedCTA';
+import PartsSection from './components/sections/PartsSection';
+import CertificationsSection from './components/sections/CertificationsSection';
+import CareersSection from './components/sections/CareersSection';
 import ContactSection from './components/sections/ContactSection';
 import Footer from './components/layout/Footer';
 import CapabilityPage from './components/pages/CapabilityPage';
@@ -19,7 +22,7 @@ import CapabilityPage from './components/pages/CapabilityPage';
 const VALID_CAPABILITY_SLUGS = [
   'laser-cutting',
   'tool-making',
-  'hydraulic-machines',
+  'press-stamping',
   'welding',
   'powder-coating',
   'phosphating',
@@ -121,8 +124,17 @@ export const App: React.FC = () => {
               {/* INDUSTRIES SERVED (#industries) */}
               <IndustriesSection />
 
+              {/* TYPES OF PARTS (#parts) */}
+              <PartsSection />
+
               {/* ENGINEERING PROCESS (#process) */}
               <ProcessSection />
+
+              {/* CERTIFICATIONS (#certifications) */}
+              <CertificationsSection />
+
+              {/* CAREERS (#careers) */}
+              <CareersSection />
 
               {/* FINAL CTA */}
               <FeaturedCTA />

@@ -14,8 +14,8 @@ export const AboutSection: React.FC = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionHeading
           badge="Company Heritage &bull; Hosur"
-          title="BUILT AROUND PRECISION SINCE 2003"
-          subtitle="Founded in Hosur, Tamil Nadu, Qualitech Industries was established to engineer precision components and work closely with customers on new product development."
+          title="BUILT ON ENGINEERING SINCE 2003"
+          subtitle="Founded in Hosur, Tamil Nadu, Qualitech Industries was established to engineer components and work closely with customers on new product development."
           align="center"
           className="mb-16"
         />
@@ -31,17 +31,17 @@ export const AboutSection: React.FC = () => {
             </div>
 
             <h3 className="text-3xl sm:text-4xl font-extrabold text-[#061522] leading-tight">
-              Two decades of engineering practical solutions, custom tooling, and precision components.
+              Two decades of engineering practical solutions, custom tooling, and quality components.
             </h3>
 
             {/* Authoritative Paragraph 1 */}
             <p className="text-slate-700 leading-relaxed text-base sm:text-lg font-medium">
-              QUALITECH INDUSTRIES was started in August 2003 with a focus on developing the manufacture of precision machined and sheet metal fabricated components.
+              QUALITECH INDUSTRIES was started in August 2003 with a focus on developing the manufacture of machined and sheet metal fabricated components.
             </p>
 
             {/* Authoritative Paragraph 2 */}
             <p className="text-slate-600 leading-relaxed text-base">
-              Today, the company’s capabilities extend across laser cutting, tooling, hydraulic machines, and surface finishing — supporting customers in developing new products and engineering requirements from concept through completed parts.
+              Today, the company’s capabilities extend across laser cutting, turret punching, press and stamping, welding, and surface finishing — supporting customers in developing new products and engineering requirements from concept through completed parts.
             </p>
 
             <div className="pt-2">
@@ -74,12 +74,12 @@ export const AboutSection: React.FC = () => {
               <div className="space-y-3.5">
                 {[
                   {
-                    title: 'Precision Machined Components',
+                    title: 'Machined Components',
                     desc: 'Machined component development tailored to engineering drawings and fitment criteria.',
                   },
                   {
                     title: 'Sheet Metal Fabrication',
-                    desc: 'Precision forming, bending, and structural assembly for diverse product lines.',
+                    desc: 'Forming, bending, and structural assembly for diverse product lines.',
                   },
                   {
                     title: 'In-House Tooling & Die Making',
@@ -87,7 +87,7 @@ export const AboutSection: React.FC = () => {
                   },
                   {
                     title: 'Laser Cutting & Hydraulic Engineering',
-                    desc: 'Clean profile cutting paired with specialized hydraulic machine development.',
+                    desc: 'Clean profile cutting and turret punching paired with a full press and stamping shop.',
                   },
                   {
                     title: 'Powder Coating & Phosphating',

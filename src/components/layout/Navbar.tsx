@@ -28,6 +28,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onNavigate, currentRoute = 'home
     { label: 'Our Customers', href: '#customers' },
     { label: 'Industries', href: '#industries' },
     { label: 'Process', href: '#process' },
+    { label: 'Careers', href: '#careers' },
   ];
 
   const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {

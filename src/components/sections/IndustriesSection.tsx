@@ -11,24 +11,27 @@ export const IndustriesSection: React.FC = () => {
       title: 'Commercial Vehicles & Automotive',
       tagline: 'Chassis, Mounts & Engine Brackets',
       description:
-        'Sheet metal fabricated brackets, precision turned shafts, and structural weldments engineered for severe duty cycles and dynamic vibration resistance.',
+        'Sheet metal fabricated brackets, turned shafts, and structural weldments engineered for severe duty cycles and dynamic vibration resistance.',
       highlights: ['Chassis Brackets', 'Suspension Mounts', 'Commercial Cab Structures'],
+      image: '/images/welding-hero.jpg',
     },
     {
       icon: <Cpu className="w-6 h-6 text-[#017AC3]" />,
-      title: 'Automotive Electronics & Sub-Systems',
-      tagline: 'Sensor Housings & Precision Parts',
+      title: 'Automotive Electronics & Energy',
+      tagline: 'Housings, Enclosures & Sheet Metal Parts',
       description:
-        'Close-tolerance components, precision stamped blanks, and protective enclosure frames supporting integrated electronics and vehicle wiring harness assemblies.',
+        'Stamped blanks, laser cut and punched parts, and protective enclosure frames supporting electronics and power equipment assemblies.',
       highlights: ['Bracket Modules', 'Enclosure Housings', 'Custom Tooling Fixtures'],
+      image: '/images/laser-cutting-hero.jpg',
     },
     {
       icon: <Wrench className="w-6 h-6 text-[#017AC3]" />,
-      title: 'Industrial Machinery & Hydraulics',
-      tagline: 'Heavy Press Frames & Power Packs',
+      title: 'Industrial Machinery & Equipment',
+      tagline: 'Press Frames, Plates & Machine Parts',
       description:
-        'Design, machining, and assembly of specialized hydraulic machinery, pressure cylinders, manifold blocks, and rigid machine beds.',
-      highlights: ['Hydraulic Cylinders', 'Press Frames', 'Manifold Mountings'],
+        'Pressed, formed, machined and welded parts for industrial machinery, including frames, plates and machine beds.',
+      highlights: ['Press Frames', 'Machine Plates', 'Formed Parts'],
+      image: '/images/hydraulic-hero.jpg',
     },
     {
       icon: <Shield className="w-6 h-6 text-[#017AC3]" />,
@@ -37,6 +40,7 @@ export const IndustriesSection: React.FC = () => {
       description:
         'Laser-profiled sheet metal enclosures, welded frames, and structural assemblies finished with phosphating and durable electrostatic powder coating.',
       highlights: ['Machine Enclosures', 'Powder Coated Panels', 'Phosphate Pre-Treated Parts'],
+      image: '/images/powder-coating-hero.jpg',
     },
   ];
 
@@ -50,7 +54,7 @@ export const IndustriesSection: React.FC = () => {
         <SectionHeading
           badge="Sector Applications"
           title="INDUSTRIES SERVED"
-          subtitle="From commercial vehicle components to specialized hydraulic machinery, Qualitech Industries engineers solutions tailored to industrial sectors."
+          subtitle="From commercial vehicle components to industrial equipment, Qualitech Industries engineers solutions tailored to each sector."
           align="center"
           className="mb-16"
         />
@@ -64,6 +68,9 @@ export const IndustriesSection: React.FC = () => {
               className="bg-white/90 p-7 flex flex-col justify-between h-full border-slate-200/90 hover:border-[#017AC3] shadow-md hover:shadow-2xl hover:shadow-[#017AC3]/12"
             >
               <div>
+                <div className="-mx-7 -mt-7 mb-5 h-40 overflow-hidden rounded-t-2xl bg-slate-100">
+                  <img src={ind.image} alt={ind.title} loading="lazy" className="w-full h-full object-cover" />
+                </div>
                 <div className="flex items-center justify-between mb-5">
                   <div className="w-12 h-12 rounded-xl bg-[#017AC3]/10 flex items-center justify-center">
                     {ind.icon}

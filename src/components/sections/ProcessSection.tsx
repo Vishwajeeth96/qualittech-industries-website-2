@@ -22,9 +22,9 @@ export const ProcessSection: React.FC = () => {
     },
     {
       step: '03',
-      title: 'Precision Fabrication',
+      title: 'Fabrication',
       category: 'Production Execution',
-      description: 'Execution via clean laser cutting, sheet metal forming, precision machining, structural welding, or hydraulic assembly.',
+      description: 'Execution via clean laser cutting, sheet metal forming, machining, structural welding, or press and stamping.',
       icon: <Cpu className="w-5 h-5 text-[#017AC3]" />,
     },
     {

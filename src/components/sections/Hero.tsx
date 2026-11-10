@@ -37,15 +37,15 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
 
             {/* Display Headline with EXACT RotatingText */}
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-[#061522] leading-[1.12]">
-              PRECISION ENGINEERED. <br />
-              BUILT TO PERFORM.
+              ENGINEERED TO PERFORM. <br />
+              BUILT TO LAST.
             </h1>
 
             {/* Rotating Core Capabilities Badge */}
             <div className="mt-4 flex items-center flex-wrap gap-2 text-lg sm:text-xl font-bold text-slate-700">
               <span>Specialized in</span>
               <RotatingText
-                texts={['Laser Cutting', 'Tool Making', 'Hydraulics', 'Welding']}
+                texts={['Laser Cutting', 'Turret Punching', 'Press & Stamping', 'Welding', 'Powder Coating']}
                 mainClassName="px-2.5 sm:px-3 md:px-4 bg-[#017AC3] text-white overflow-hidden py-0.5 sm:py-1 md:py-1.5 justify-center rounded-lg inline-flex shadow-md shadow-[#017AC3]/25 align-middle"
                 staggerFrom="last"
                 initial={{ y: "100%" }}
@@ -63,7 +63,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
 
             {/* Supporting Copy from Authoritative Brief */}
             <p className="mt-6 text-base sm:text-lg text-slate-600 font-normal leading-relaxed max-w-2xl">
-              Precision machined and sheet metal fabricated components, tooling, hydraulic machines, and surface finishing — engineered around customer product development requirements.
+              Machined and sheet metal fabricated components, laser cutting, turret punching, press and stamping, welding, and surface finishing — engineered around customer product development requirements.
             </p>
 
             {/* CTAs using EXACT Skewed Button Animation with QTI Blue hover */}
@@ -140,7 +140,7 @@ export const Hero: React.FC<HeroProps> = ({ onNavigate }) => {
                 title="View Core Capabilities"
               >
                 <div className="flex items-center gap-1 text-xl sm:text-2xl font-extrabold text-[#017AC3]">
-                  <span>7 Pillars</span>
+                  <span>6 Pillars</span>
                   <ArrowUpRight className="w-3.5 h-3.5 opacity-0 group-hover:opacity-100 transition-opacity text-[#017AC3]" />
                 </div>
                 <div className="text-xs text-slate-500 uppercase tracking-wider font-semibold mt-0.5 group-hover:text-slate-800">

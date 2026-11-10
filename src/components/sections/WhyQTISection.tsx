@@ -11,7 +11,7 @@ export const WhyQTISection: React.FC = () => {
       title: 'Integrated Capabilities',
       subtitle: 'Complete Manufacturing Ecosystem',
       description:
-        'Laser cutting, tool making, hydraulic engineering, structural welding, powder coating, and phosphating coordinated under one engineering-focused facility.',
+        'Laser cutting, turret punching, press and stamping, structural welding, powder coating, and phosphating coordinated under one engineering-focused facility.',
     },
     {
       icon: <RefreshCw className="w-6 h-6 text-[#017AC3]" />,
