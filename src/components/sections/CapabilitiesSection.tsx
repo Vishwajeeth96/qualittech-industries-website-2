@@ -27,7 +27,7 @@ export const CapabilitiesSection: React.FC<CapabilitiesSectionProps> = ({ onNavi
         <SectionHeading
           badge="6 Core Pillars"
           title="ENGINEERING CAPABILITIES"
-          subtitle="FROM RAW MATERIAL TO FINISHED COMPONENT. Qualitech Industries integrates cutting, tooling, fabrication, hydraulics, and surface treatment into a coordinated engineering ecosystem."
+          subtitle="FROM RAW MATERIAL TO FINISHED COMPONENT. Qualitech Industries integrates cutting, punching, stamping, fabrication, and surface treatment into a coordinated engineering ecosystem."
           align="center"
           className="mb-16"
         />

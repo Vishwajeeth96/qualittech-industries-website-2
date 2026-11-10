@@ -32,6 +32,7 @@ export interface CapabilityPageData {
   description: string;
   categoryFilterId: string;
   metaBadge: string;
+  categories?: { title: string; subtitle: string; items: string[] }[];
   heroMachine: {
     name: string;
     code: string;
@@ -51,11 +52,11 @@ export const CAPABILITY_PAGES: Record<string, CapabilityPageData> = {
   'laser-cutting': {
     slug: 'laser-cutting',
     number: '01',
-    title: 'Laser Cutting',
-    headline: 'High-Power CNC Fiber Laser Cutting & Precision Profiling',
-    tagline: 'Precision Profiling for Sheet Metal & Complex Structural Blanks',
+    title: 'Laser Cutting & Turret Punching',
+    headline: 'High-Power CNC Fiber Laser Cutting & Turret Punching',
+    tagline: 'Laser Profiling and Turret Punching for Sheet Metal Blanks',
     description:
-      'Operating state-of-the-art 6kW high-power fiber laser cutting centers in Hosur. Qualitech delivers clean edge squareness, intricate geometry cutouts, and rapid prototype turnarounds with zero mechanical tool wear across MS, SS, Aluminum, and Copper.',
+      'Operating state-of-the-art 6kW high-power fiber laser cutting centers in Hosur. Qualitech delivers clean edge squareness, intricate geometry cutouts, and rapid prototype turnarounds with zero mechanical tool wear across MS, SS, Aluminum, and Copper. A turret punch machine complements the lasers for punched, perforated and formed sheet metal parts.',
     categoryFilterId: 'laser',
     metaBadge: '6KW High-Speed Fiber Resonator • Hosur Center',
     heroMachine: {
@@ -314,16 +315,16 @@ export const CAPABILITY_PAGES: Record<string, CapabilityPageData> = {
     ],
   },
 
-  'hydraulic-machines': {
-    slug: 'hydraulic-machines',
+  'press-stamping': {
+    slug: 'press-stamping',
     number: '03',
-    title: 'Hydraulic Machines & Press Shop',
-    headline: 'High-Tonnage Stamping, Progressive Presses & Hydraulic Forming',
-    tagline: 'Controlled Force Engineering from 35-Ton to 160-Ton Capacity',
+    title: 'Press & Stamping',
+    headline: 'High-Tonnage Press, Stamping, Bending & Shearing',
+    tagline: 'Pneumatic & Hydraulic Presses from 35-Ton to 500-Ton Capacity',
     description:
-      '44 heavy pneumatic and hydraulic presses, hydraulic stretching machines, and automated straightener-feeders operational in our Hosur press shop. We handle high-volume progressive stamping, deep drawing, and structural blanking for automotive and industrial OEMs.',
+      '46 pneumatic and hydraulic presses, press brakes, hydraulic shearing and stretching machines, and automated straightener-feeders operational in our Hosur press shop. We handle high-volume progressive stamping, deep drawing, and structural blanking for automotive and industrial OEMs.',
     categoryFilterId: 'press-shop',
-    metaBadge: '44 Production Presses • Up to 160-Ton Capacity',
+    metaBadge: '46 Production Presses • Up to 500-Ton Capacity',
     heroMachine: {
       name: 'SEYI & KOMATSU 160-TON Heavy Pneumatic Power Press',
       code: 'QTI/P-MC/14',
@@ -716,12 +717,24 @@ export const CAPABILITY_PAGES: Record<string, CapabilityPageData> = {
   'phosphating': {
     slug: 'phosphating',
     number: '06',
-    title: 'Phosphating & Surface Pre-Treatment',
+    title: 'Phosphating & Pre-Treatment',
     headline: 'Multi-Stage Chemical Immersion Phosphating & Conversion Line',
     tagline: 'Foundational Corrosion Protection, Pre-Treatment & Coating Bonding',
     description:
       'Complete chemical pre-treatment division featuring multi-stage immersion tanks, Danfoss heated degreasing and phosphating burners, Riello dry-off ovens, and a 25 HP heavy-duty shot blasting unit in Hosur. Creating the foundational crystal conversion layer for maximum paint adhesion.',
     categoryFilterId: 'powder-coating',
+    categories: [
+      {
+        title: 'Chemical Pre-Treatment',
+        subtitle: 'Phosphating',
+        items: ['Chemical degreasing', 'Multi-stage immersion phosphating', 'Heated process tanks with burners', 'Dry-off oven'],
+      },
+      {
+        title: 'Mechanical Pre-Treatment',
+        subtitle: 'Shot Blasting',
+        items: ['Shot blasting unit', 'Rust and scale removal', 'Surface profile for coating adhesion'],
+      },
+    ],
     metaBadge: '7-Tank Immersion Process • 25 HP Shot Blasting',
     heroMachine: {
       name: 'Multi-Stage Chemical Immersion Phosphating & Pre-Treatment Line',

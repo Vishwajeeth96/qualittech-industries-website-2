@@ -37,10 +37,10 @@ export const OurAchievementsSection: React.FC = () => {
   const qualitativeMilestones = [
     {
       number: '02',
-      title: 'PRECISION ENGINEERING',
-      category: 'Precision Machined Components',
+      title: 'MACHINED COMPONENTS',
+      category: 'Component Manufacturing',
       description:
-        'Dedicated machining, turning, and tight-tolerance component manufacturing engineered to customer drawing specifications.',
+        'Dedicated machining, turning, and component manufacturing engineered to customer drawing specifications.',
       icon: <Cpu className="w-5 h-5 text-[#017AC3]" />,
     },
     {
@@ -56,7 +56,7 @@ export const OurAchievementsSection: React.FC = () => {
       title: 'INTEGRATED CAPABILITIES',
       category: 'Complete Technical Continuum',
       description:
-        'Laser Cutting \u2022 Tooling \u2022 Hydraulics \u2022 Welding \u2022 Finishing (Powder Coating & Phosphating Pre-Treatment).',
+        'Laser Cutting \u2022 Turret Punching \u2022 Press & Stamping \u2022 Welding \u2022 Finishing (Powder Coating & Phosphating Pre-Treatment).',
       icon: <Layers className="w-5 h-5 text-[#017AC3]" />,
     },
   ];
@@ -127,10 +127,10 @@ export const OurAchievementsSection: React.FC = () => {
             {/* Right: Authoritative Narrative quoting company brief */}
             <div className="lg:col-span-7 flex flex-col justify-center border-t lg:border-t-0 lg:border-l border-slate-200/80 pt-6 lg:pt-0 lg:pl-10">
               <h3 className="text-2xl sm:text-3xl font-extrabold text-[#061522] leading-snug">
-                Precision engineering grounded in customer partnerships.
+                Engineering grounded in customer partnerships.
               </h3>
               <p className="mt-3 text-slate-700 text-sm sm:text-base leading-relaxed font-normal bg-[#017AC3]/5 border-l-2 border-[#017AC3] p-4 rounded-r-xl">
-                &ldquo;QUALITECH INDUSTRIES was started in Aug 2003 and established to develop manufacturing of precision machined and Sheet Metal Fabricated Components. We are focused on developing new products with our customers.&rdquo;
+                &ldquo;QUALITECH INDUSTRIES was started in Aug 2003 and established to develop manufacturing of machined and Sheet Metal Fabricated Components. We are focused on developing new products with our customers.&rdquo;
               </p>
 
               <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-mono text-slate-500">
@@ -143,6 +143,8 @@ export const OurAchievementsSection: React.FC = () => {
             </div>
           </div>
         </div>
+
+        <p className="mb-6 text-center text-xs font-mono text-slate-500">More achievements and recognitions will be added here soon.</p>
 
         {/* 3 Qualitative Achievement Panels */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">

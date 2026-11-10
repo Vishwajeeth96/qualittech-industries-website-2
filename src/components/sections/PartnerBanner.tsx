@@ -26,12 +26,12 @@ export const PartnerBanner: React.FC = () => {
         {/* 6 Core Capabilities Tags linking directly to capability sections */}
         <div className="mt-10 flex flex-wrap items-center justify-center gap-2.5 sm:gap-3 max-w-4xl mx-auto">
           {[
-            { label: 'Laser Cutting', href: '#laser-cutting' },
+            { label: 'Laser Cutting & Turret Punching', href: '#laser-cutting' },
             { label: 'Tool Making & Tooling', href: '#tool-making' },
-            { label: 'Hydraulic Machines', href: '#hydraulic-machines' },
+            { label: 'Press & Stamping', href: '#press-stamping' },
             { label: 'Welding', href: '#welding' },
             { label: 'Powder Coating', href: '#powder-coating' },
-            { label: 'Phosphating', href: '#phosphating' },
+            { label: 'Chemical & Mechanical Pre-Treatment', href: '#phosphating' },
           ].map((item, idx) => (
             <a
               key={idx}

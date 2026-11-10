@@ -13,8 +13,8 @@ export const CORE_PILLARS: CorePillar[] = [
   {
     id: 'laser-cutting',
     number: '01',
-    title: 'Laser Cutting',
-    tagline: 'Precision Cutting for Sheet Metal & Components',
+    title: 'Laser Cutting & Turret Punching',
+    tagline: 'Laser Cutting & Turret Punching for Sheet Metal',
     description: 'High-accuracy laser profiling for sheet metal, prototype blanks, and intricate component contours without mechanical tool wear.',
     visualType: 'laser',
     highlights: ['Clean edge squareness', 'Intricate contour capability', 'Rapid prototyping turnaround'],
@@ -31,14 +31,14 @@ export const CORE_PILLARS: CorePillar[] = [
     targetAnchor: '#tool-making',
   },
   {
-    id: 'hydraulic-machines',
+    id: 'press-stamping',
     number: '03',
-    title: 'Hydraulic Machines',
-    tagline: 'Hydraulic Machine Development & Engineering',
-    description: 'Design and assembly of specialized hydraulic machinery, pressure cylinders, and power packs engineered for controlled industrial force.',
+    title: 'Press & Stamping',
+    tagline: 'High-Volume Stamping, Pressing & Forming',
+    description: 'Pneumatic and hydraulic press fleet, press brakes and shearing for stamping, blanking, forming and bending of sheet metal components.',
     visualType: 'hydraulic',
-    highlights: ['Controlled pressure delivery', 'Rigid machine frames', 'Custom stroke & power integration'],
-    targetAnchor: '#hydraulic-machines',
+    highlights: ['35 to 500 ton press range', 'Press brakes & hydraulic shearing', 'Progressive & single-stage stamping'],
+    targetAnchor: '#press-stamping',
   },
   {
     id: 'welding',
@@ -64,10 +64,10 @@ export const CORE_PILLARS: CorePillar[] = [
     id: 'phosphating',
     number: '06',
     title: 'Phosphating',
-    tagline: 'Pre-Treatment & Surface Conversion',
-    description: 'Chemical surface treatment providing foundational corrosion protection, improved surface lubrication, and optimal coating adhesion.',
+    tagline: 'Chemical & Mechanical Pre-Treatment',
+    description: 'Chemical pre-treatment (phosphating) and mechanical pre-treatment (shot blasting) for corrosion protection and optimal coating adhesion.',
     visualType: 'phosphating',
-    highlights: ['Surface conversion layer', 'Pre-treatment bonding base', 'Anti-galling properties'],
+    highlights: ['Chemical pre-treatment: phosphating', 'Mechanical pre-treatment: shot blasting', 'Pre-treatment bonding base'],
     targetAnchor: '#phosphating',
   },
 ];
@@ -75,13 +75,13 @@ export const CORE_PILLARS: CorePillar[] = [
 export const COMPANY_OVERVIEW = {
   founded: 'August 2003',
   establishedYear: '2003',
-  tagline: 'PRECISION ENGINEERED. BUILT TO PERFORM.',
+  tagline: 'ENGINEERED TO PERFORM. BUILT TO LAST.',
   authoritativeText:
-    'QUALITECH INDUSTRIES was started in August 2003 with a focus on developing the manufacture of precision machined and sheet metal fabricated components. Today, our capabilities extend across laser cutting, tooling, hydraulic machines, and surface finishing — working closely with our customers to develop and manufacture new products with precision, practicality, and engineering focus.',
+    'QUALITECH INDUSTRIES was started in August 2003 with a focus on developing the manufacture of machined and sheet metal fabricated components. Today, our capabilities extend across laser cutting, turret punching, press and stamping, welding, and surface finishing — working closely with our customers to develop and manufacture new products with practicality and engineering focus.',
   onePartnerStatement:
     'ONE ENGINEERING PARTNER. MULTIPLE MANUFACTURING CAPABILITIES.',
   onePartnerSubtitle:
-    'From precision cutting and tooling to fabrication, hydraulic machinery, and surface finishing — Qualitech Industries brings multiple manufacturing capabilities together under one engineering-focused operation.',
+    'From laser cutting and turret punching to pressing, stamping, welding, and surface finishing — Qualitech Industries brings multiple manufacturing capabilities together under one engineering-focused operation.',
   location: {
     name: 'QUALITECH INDUSTRIES',
     fullAddress: 'SF No.128/1A, Bagalur Road, Eluvapalli, Hosur, Krishnagiri, Tamil Nadu, 635103',

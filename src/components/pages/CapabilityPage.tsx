@@ -11,15 +11,63 @@ import {
   Cpu,
   ChevronLeft,
   ChevronRight,
+  Plane,
+  FlaskConical,
+  Hammer,
 } from 'lucide-react';
 import { CAPABILITY_PAGES, type CapabilityPageData } from '../../data/capabilityPagesData';
-import { ALL_MACHINES } from '../../data/machineryData';
+import { ALL_MACHINES, type MachineItem } from '../../data/machineryData';
 import SkewButton from '../ui/SkewButton';
 
 interface CapabilityPageProps {
   slug: string;
   onNavigate: (route: string) => void;
 }
+
+interface MachineGroup {
+  label: string;
+  units: MachineItem[];
+}
+
+const cleanName = (name: string): string =>
+  name
+    .replace(/PREES/g, 'PRESS')
+    .replace(/\s*M\/C\s*/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+// Groups machines of the same type together ("combine all"), following the 2026-27 machine list.
+const getGroupLabel = (machine: MachineItem, slug: string): string => {
+  const n = cleanName(machine.name).toUpperCase();
+  if (slug === 'powder-coating') return 'POWDER COATING';
+  if (slug === 'phosphating') {
+    if (n.includes('SHOT')) return 'MECHANICAL PRE-TREATMENT / SHOT BLASTING';
+    if (n.includes('GAS')) return 'GAS PLANT';
+    return 'CHEMICAL PRE-TREATMENT / PHOSPHATING';
+  }
+  if (n.includes('DRILLING')) return 'DRILLING & GANG DRILLING';
+  if (n.includes('LATHE')) return 'LATHE MACHINES';
+  if (n.includes('PROJUCTION') || n.includes('SPOT WELDING')) return 'PROJECTION & SPOT WELDING';
+  if (n === 'WELDING MACHINE') return 'MIG WELDING';
+  if (n.includes('ROBO')) return 'ROBO WELDING';
+  if (n.includes('LASER CUTTING')) return 'LASER CUTTING';
+  if (n.includes('SURFACE GRINDING')) return 'SURFACE GRINDING';
+  if (n.includes('JIG BORING')) return 'JIG BORING';
+  if (n.includes('AIR COMPRESSOR')) return 'AIR COMPRESSORS';
+  return n;
+};
+
+const groupMachines = (machines: MachineItem[], slug: string): MachineGroup[] => {
+  const map = new Map<string, MachineItem[]>();
+  machines.forEach((m) => {
+    const key = getGroupLabel(m, slug);
+    map.set(key, [...(map.get(key) || []), m]);
+  });
+  return Array.from(map.entries()).map(([label, units]) => ({ label, units }));
+};
+
+const uniq = (values: string[]): string[] =>
+  Array.from(new Set(values.map((v) => v.trim()).filter((v) => v && v !== '-')));
 
 export const CapabilityPage: React.FC<CapabilityPageProps> = ({ slug, onNavigate }) => {
   const [searchQuery, setSearchQuery] = useState<string>('');
@@ -47,12 +95,12 @@ export const CapabilityPage: React.FC<CapabilityPageProps> = ({ slug, onNavigate
     return ALL_MACHINES.filter((machine) => {
       // Map capability slug to category or name keywords
       if (slug === 'laser-cutting') {
-        return machine.categoryId === 'laser' || machine.category.includes('Laser');
+        return machine.categoryId === 'laser' || machine.categoryId === 'turret-punch' || machine.category.includes('Laser') || machine.category.includes('Turret');
       }
       if (slug === 'tool-making') {
         return machine.categoryId === 'tool-room' || machine.category.includes('Tool');
       }
-      if (slug === 'hydraulic-machines') {
+      if (slug === 'press-stamping') {
         return machine.categoryId === 'press-shop' || machine.category.includes('Press');
       }
       if (slug === 'welding') {
@@ -92,6 +140,8 @@ export const CapabilityPage: React.FC<CapabilityPageProps> = ({ slug, onNavigate
         m.model.toLowerCase().includes(q)
     );
   }, [relatedMachines, searchQuery]);
+
+  const machineGroups = useMemo(() => groupMachines(filteredMachines, slug), [filteredMachines, slug]);
 
   const capabilityKeys = Object.keys(CAPABILITY_PAGES);
 
@@ -290,6 +340,46 @@ export const CapabilityPage: React.FC<CapabilityPageProps> = ({ slug, onNavigate
           </div>
         </div>
 
+        {/* Pre-treatment categories (chemical vs mechanical) */}
+        {capabilityData.categories && (
+          <div className="mt-10 sm:mt-14 grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
+            {capabilityData.categories.map((cat, idx) => (
+              <div key={cat.title} className="rounded-2xl bg-white border border-slate-200/90 shadow-md p-5 sm:p-7">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="w-10 h-10 rounded-xl bg-[#017AC3]/10 flex items-center justify-center">
+                    {idx === 0 ? <FlaskConical className="w-5 h-5 text-[#017AC3]" /> : <Hammer className="w-5 h-5 text-[#017AC3]" />}
+                  </div>
+                  <div>
+                    <div className="text-[11px] font-mono font-bold text-[#017AC3] uppercase tracking-wider">{cat.subtitle}</div>
+                    <h3 className="text-lg sm:text-xl font-extrabold text-[#061522]">{cat.title}</h3>
+                  </div>
+                </div>
+                <ul className="space-y-1.5">
+                  {cat.items.map((item) => (
+                    <li key={item} className="flex items-center gap-2 text-xs sm:text-sm text-slate-700 font-medium">
+                      <CheckCircle2 className="w-3.5 h-3.5 text-emerald-500 shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* Drone shorts placeholder (content to be shared) */}
+        {(slug === 'phosphating' || slug === 'powder-coating') && (
+          <div className="mt-8 sm:mt-10 rounded-2xl border border-dashed border-slate-300 bg-white/70 p-5 sm:p-7 flex items-center gap-4">
+            <div className="w-11 h-11 rounded-xl bg-[#017AC3]/10 flex items-center justify-center shrink-0">
+              <Plane className="w-5 h-5 text-[#017AC3]" />
+            </div>
+            <div>
+              <h3 className="text-sm sm:text-base font-extrabold text-[#061522]">Plant drone shorts</h3>
+              <p className="text-xs sm:text-sm text-slate-600">Aerial footage of our phosphating and powder coating lines will be added here soon.</p>
+            </div>
+          </div>
+        )}
+
         {/* 02. BELOW HERO: 4 IMAGES OF MACHINES AND DETAILS IN 2 COL 2 ROW CONTAINER WITH FLEX/GRID */}
         <div className="mt-12 sm:mt-20 lg:mt-24">
           <div className="mb-6 sm:mb-8">
@@ -396,13 +486,13 @@ export const CapabilityPage: React.FC<CapabilityPageProps> = ({ slug, onNavigate
             <div>
               <div className="inline-flex items-center gap-2 px-2.5 sm:px-3 py-1 rounded-full bg-slate-200 text-slate-700 text-[10px] sm:text-xs font-mono font-bold uppercase mb-2">
                 <FileSpreadsheet className="w-3.5 h-3.5 text-emerald-600" />
-                <span>Complete Plant Machinery Registry &bull; Format QTI/MTN/D01 Rev 02</span>
+                <span>Machinery Registry 2026-27 &bull; Format QTI/MTN/D01 Rev 02</span>
               </div>
               <h2 className="text-xl sm:text-3xl font-extrabold text-[#061522] tracking-tight">
-                All Installed Machinery in {capabilityData.title} Division ({relatedMachines.length} Units)
+                Machinery in {capabilityData.title} ({relatedMachines.length} Units)
               </h2>
               <p className="mt-1 text-slate-600 text-xs sm:text-sm max-w-2xl leading-relaxed">
-                Comprehensive machine inventory operational at our Hosur plant. High-density technical specifications without images for fast OEM audit reference.
+                Comprehensive machine inventory operational at our Hosur plant. Machines of the same type are combined. Open a group to see each unit.
               </p>
             </div>
 
@@ -438,66 +528,56 @@ export const CapabilityPage: React.FC<CapabilityPageProps> = ({ slug, onNavigate
             </span>
           </div>
 
-          {/* Clean High-Density Table (NO IMAGES) */}
-          <div className="bg-white rounded-xl sm:rounded-2xl border border-slate-200/90 shadow-sm overflow-hidden">
-            <div className="overflow-x-auto scrollbar-thin">
-              <table className="w-full text-left text-xs sm:text-sm min-w-[700px]">
-                <thead>
-                  <tr className="bg-slate-50 border-b border-slate-200 text-[11px] font-mono uppercase tracking-wider text-slate-600">
-                    <th className="py-3 px-4 font-bold">SL #</th>
-                    <th className="py-3 px-4 font-bold">Machine Code</th>
-                    <th className="py-3 px-4 font-bold">Machine Name / Description</th>
-                    <th className="py-3 px-4 font-bold">Capacity</th>
-                    <th className="py-3 px-4 font-bold">Manufacturer / Make</th>
-                    <th className="py-3 px-4 font-bold">Model</th>
-                    <th className="py-3 px-4 font-bold">Status</th>
-                    <th className="py-3 px-4 font-bold text-right">Action</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-slate-100">
-                  {filteredMachines.map((machine, index) => (
-                    <tr key={machine.id} className="hover:bg-slate-50/80 transition-colors text-slate-700">
-                      <td className="py-2.5 px-4 font-mono text-xs text-slate-400">
-                        {index + 1}
-                      </td>
-                      <td className="py-2.5 px-4 font-mono font-bold text-xs text-[#017AC3] whitespace-nowrap">
-                        {machine.code}
-                      </td>
-                      <td className="py-2.5 px-4 font-bold text-[#061522]">
-                        {machine.name}
-                      </td>
-                      <td className="py-2.5 px-4 font-mono text-xs font-bold text-slate-800 whitespace-nowrap">
-                        {machine.capacity}
-                      </td>
-                      <td className="py-2.5 px-4 text-xs font-semibold text-slate-700">
-                        {machine.make}
-                      </td>
-                      <td className="py-2.5 px-4 font-mono text-xs text-slate-500">
-                        {machine.model || 'Standard'}
-                      </td>
-                      <td className="py-2.5 px-4 text-xs">
-                        <span className="inline-flex items-center gap-1 text-[11px] font-mono font-bold text-emerald-600">
-                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                          Operational
+          {/* Grouped registry: machines of the same type are combined */}
+          <div className="space-y-3">
+            {machineGroups.map((group) => {
+              const capacities = uniq(group.units.map((u) => u.capacity));
+              const makes = uniq(group.units.map((u) => u.make));
+              return (
+                <details key={group.label} className="group bg-white rounded-xl sm:rounded-2xl border border-slate-200/90 shadow-sm overflow-hidden">
+                  <summary className="cursor-pointer list-none p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-3 hover:bg-slate-50/80 transition-colors">
+                    <div className="min-w-0">
+                      <h3 className="text-sm sm:text-base font-extrabold text-[#061522] flex items-center gap-2">
+                        <span>{group.label}</span>
+                        <span className="px-2 py-0.5 rounded-md bg-[#017AC3]/10 text-[#017AC3] text-[11px] font-mono font-bold">
+                          {group.units.length} {group.units.length === 1 ? 'Unit' : 'Units'}
                         </span>
-                      </td>
-                      <td className="py-2.5 px-4 text-right whitespace-nowrap">
-                        <a
-                          href="#contact"
-                          className="inline-flex items-center gap-1 text-xs font-mono font-bold text-[#017AC3] hover:text-[#061522]"
-                        >
-                          <span>RFQ</span>
-                          <ArrowUpRight className="w-3.5 h-3.5" />
-                        </a>
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
+                      </h3>
+                      <p className="mt-1 text-[11px] sm:text-xs text-slate-600 font-mono">
+                        {capacities.length > 0 && <span>Capacity: {capacities.slice(0, 6).join(', ')}{capacities.length > 6 ? '...' : ''}</span>}
+                      </p>
+                      <p className="text-[11px] sm:text-xs text-slate-500 font-mono truncate">
+                        {makes.length > 0 && <span>Make: {makes.slice(0, 5).join(', ')}{makes.length > 5 ? '...' : ''}</span>}
+                      </p>
+                    </div>
+                    <span className="text-[11px] font-mono font-bold text-[#017AC3] shrink-0">View unit details &darr;</span>
+                  </summary>
+                  <div className="overflow-x-auto border-t border-slate-100">
+                    <table className="w-full text-left text-xs min-w-[520px]">
+                      <thead>
+                        <tr className="bg-slate-50 text-[11px] font-mono uppercase tracking-wider text-slate-600">
+                          <th className="py-2 px-4 font-bold">Machine Code</th>
+                          <th className="py-2 px-4 font-bold">Capacity</th>
+                          <th className="py-2 px-4 font-bold">Make</th>
+                        </tr>
+                      </thead>
+                      <tbody className="divide-y divide-slate-100">
+                        {group.units.map((u) => (
+                          <tr key={u.id} className="text-slate-700">
+                            <td className="py-2 px-4 font-mono font-bold text-[#017AC3] whitespace-nowrap">{u.code}</td>
+                            <td className="py-2 px-4 font-mono font-bold text-slate-800 whitespace-nowrap">{u.capacity}</td>
+                            <td className="py-2 px-4 font-semibold">{u.make}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </details>
+              );
+            })}
 
             {filteredMachines.length === 0 && (
-              <div className="py-10 text-center text-slate-500 text-xs">
+              <div className="py-10 text-center text-slate-500 text-xs bg-white rounded-xl border border-slate-200/90">
                 No machines matched your search term in this capability division.
               </div>
             )}

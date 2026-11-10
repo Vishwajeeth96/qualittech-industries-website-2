@@ -45,7 +45,7 @@ export const ContactSection: React.FC = () => {
                     Technical Enquiry Form
                   </h3>
                   <p className="text-xs font-mono text-slate-500 mt-1">
-                    Precision RFQ &bull; Hosur Works Engineering Review
+                    RFQ &bull; Hosur Works Engineering Review
                   </p>
                 </div>
                 <span className="w-2.5 h-2.5 rounded-full bg-[#D71920]" />
@@ -128,7 +128,7 @@ export const ContactSection: React.FC = () => {
                     options={[
                       { value: 'Laser Cutting', label: '01 — Laser Cutting & Profiling' },
                       { value: 'Tool Making', label: '02 — Tool Making & Tooling' },
-                      { value: 'Hydraulic Machines', label: '03 — Hydraulic Machines' },
+                      { value: 'Press & Stamping', label: '03 — Press & Stamping' },
                       { value: 'Welding', label: '04 — Welding & Structural Fabrication' },
                       { value: 'Powder Coating', label: '05 — Powder Coating' },
                       { value: 'Phosphating', label: '06 — Phosphating Surface Pre-Treatment' },

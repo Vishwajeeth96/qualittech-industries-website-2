@@ -39,7 +39,7 @@ export const HeroMachineryShowcase: React.FC<HeroMachineryShowcaseProps> = ({ on
             Flagship Machinery & Advanced Production Units
           </h2>
           <p className="text-slate-600 text-xs sm:text-sm lg:text-base mt-1 max-w-2xl leading-relaxed">
-            Precision fiber laser profiling, 160-ton progressive stamping presses, robotic welding cells, and dedicated CNC toolroom machining at our Hosur plant.
+            Fiber laser profiling, 160-ton progressive stamping presses, robotic welding cells, and dedicated CNC toolroom machining at our Hosur plant.
           </p>
         </div>
 
